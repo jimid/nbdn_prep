@@ -88,6 +88,9 @@
     <Compile Include="utility\range\InclusiveRange.cs" />
     <Compile Include="utility\range\Range.cs" />
     <Compile Include="utility\sorting\ChainedComparer.cs" />
+    <Compile Include="utility\sorting\DescendingComparer.cs" />
+    <Compile Include="utility\sorting\PropertyComparer.cs" />
+    <Compile Include="utility\sorting\Sort.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
