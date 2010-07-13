@@ -259,7 +259,9 @@ namespace nothinbutdotnetprep.specs
 
             It should_be_able_to_sort_all_movies_by_title_descending = () =>
             {
-                var results = sut.sort_all_movies_by_title_descending;
+                var comparer = Sort<Movie>.by_descending(x => x.title);
+                var results = sut.sort_all_using(comparer);
+
 
                 results.ShouldContainOnlyInOrder(theres_something_about_mary, the_ring, shrek,
                                                  pirates_of_the_carribean, indiana_jones_and_the_temple_of_doom,
@@ -301,6 +303,13 @@ namespace nothinbutdotnetprep.specs
                 //Dreamworks
                 //Universal
                 //Disney
+                var comparer = Sort<Movie>.by(x => x.production_studio,
+                                              ProductionStudio.MGM,
+                                              ProductionStudio.Pixar,
+                                              ProductionStudio.Dreamworks,
+                                              ProductionStudio.Universal,
+                                              ProductionStudio.Disney)
+                                        .then_by(x => x.date_published.Year);
                 var results = sut.sort_all_movies_by_movie_studio_and_year_published();
                 /* should return a set of results 
                  * in the collection sorted by the rating of the production studio (not the movie rating) and year published. for this exercise you need to take the studio ratings

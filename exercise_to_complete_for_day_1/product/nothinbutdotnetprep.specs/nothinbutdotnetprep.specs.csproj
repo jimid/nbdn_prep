@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="AndCriteriaSpecs.cs" />
     <Compile Include="MovieLibrarySpecs.cs" />
+    <Compile Include="TitleComparer.cs" />
     <Compile Include="utility\CollectionExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

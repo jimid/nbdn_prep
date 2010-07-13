@@ -36,10 +36,6 @@ namespace nothinbutdotnetprep.utility.filtering
             return basic_factory.equal_to_any(values);
         }
 
-        public Criteria<ItemToFilter> not_equal_to(PropertyType value)
-        {
-            return basic_factory.not_equal_to(value);
-        }
 
         public Criteria<ItemToFilter> between(PropertyType start, PropertyType end)
         {

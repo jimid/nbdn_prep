@@ -1,23 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace nothinbutdotnetprep.utility.filtering
 {
-    public class Not<ItemToFilter,PropertyType>
-    {
-        Func<ItemToFilter, PropertyType> accessor;
-
-        public Not(Func<ItemToFilter, PropertyType> accessor)
-        {
-            this.accessor = accessor;
-        }   
-
-        public Criteria<ItemToFilter> equal_to(PropertyType value)
-        {
-            return new PropertyCriteria<ItemToFilter, PropertyType>(
-                accessor, new IsNotEqualTo<PropertyType>(value));
-        }
-    }
     public class DefaultCriteriaFactory<ItemToFilter, PropertyType> : CriteriaFactory<ItemToFilter, PropertyType>
     {
         Func<ItemToFilter, PropertyType> accessor;
@@ -26,10 +10,10 @@ namespace nothinbutdotnetprep.utility.filtering
         {
             this.accessor = accessor;
         }
-        
-        public Not<ItemToFilter,PropertyType> not
+
+        public NotCriteriaFactory<ItemToFilter, PropertyType> not
         {
-            get { return new Not<ItemToFilter, PropertyType>(accessor); }
+            get { return new NotCriteriaFactory<ItemToFilter, PropertyType>(this); }
         }
 
         public Criteria<ItemToFilter> equal_to(PropertyType value)
@@ -41,11 +25,6 @@ namespace nothinbutdotnetprep.utility.filtering
         {
             return new PropertyCriteria<ItemToFilter, PropertyType>(
                 accessor, new IsEqualToAny<PropertyType>(values));
-        }
-
-        public Criteria<ItemToFilter> not_equal_to(PropertyType value)
-        {
-            return new NotCriteria<ItemToFilter>(equal_to(value));
         }
 
     }
