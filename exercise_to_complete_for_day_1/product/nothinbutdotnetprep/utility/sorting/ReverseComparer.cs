@@ -2,18 +2,18 @@
 
 namespace nothinbutdotnetprep.utility.sorting
 {
-    public class DescendingComparer<ItemToSort> : IComparer<ItemToSort>
+    public class ReverseComparer<ItemToSort> : IComparer<ItemToSort>
     {
-        private IComparer<ItemToSort> inner;
+        IComparer<ItemToSort> inner;
 
-        public DescendingComparer(IComparer<ItemToSort> inner)
+        public ReverseComparer(IComparer<ItemToSort> inner)
         {
             this.inner = inner;
         }
 
         public int Compare(ItemToSort x, ItemToSort y)
         {
-            return 0 - inner.Compare(x, y);
+            return - inner.Compare(x, y);
         }
     }
 }

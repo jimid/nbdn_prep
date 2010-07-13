@@ -14,9 +14,9 @@ namespace nothinbutdotnetprep.utility.sorting
 
         public int Compare(ItemToSort x, ItemToSort y)
         {
-            var valX = accessor(x);
-            var valY = accessor(y);
-            return valX.CompareTo(valY);
+            var val_x = accessor(x);
+            var val_y = accessor(y);
+            return val_x.CompareTo(val_y);
         }
     }
 
