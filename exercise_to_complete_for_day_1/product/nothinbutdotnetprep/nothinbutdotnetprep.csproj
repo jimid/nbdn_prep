@@ -88,11 +88,18 @@
     <Compile Include="utility\range\InclusiveRange.cs" />
     <Compile Include="utility\range\Range.cs" />
     <Compile Include="utility\sorting\ChainedComparer.cs" />
+    <Compile Include="utility\sorting\ComparableEnumerable.cs" />
     <Compile Include="utility\sorting\ComparerBuilder.cs" />
     <Compile Include="utility\sorting\ComparerExtensions.cs" />
-    <Compile Include="utility\sorting\ReverseComparer.cs" />
+    <Compile Include="utility\sorting\Descending.cs" />
+    <Compile Include="utility\sorting\ListComparer.cs" />
+    <Compile Include="utility\sorting\Normal.cs" />
     <Compile Include="utility\sorting\PropertyComparer.cs" />
+    <Compile Include="utility\sorting\ReverseComparer.cs" />
+    <Compile Include="utility\sorting\DefaultComparer.cs" />
     <Compile Include="utility\sorting\Sort.cs" />
+    <Compile Include="utility\sorting\SortDirection.cs" />
+    <Compile Include="utility\sorting\SortDirections.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

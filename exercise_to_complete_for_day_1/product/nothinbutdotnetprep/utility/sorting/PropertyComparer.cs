@@ -1,41 +1,22 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace nothinbutdotnetprep.utility.sorting
 {
-    public class PropertyComparer<ItemToSort, PropertyType> : IComparer<ItemToSort> where PropertyType : IComparable<PropertyType>
+    public class PropertyComparer<T,PropertyType> : IComparer<T>
     {
-        private readonly Func<ItemToSort, PropertyType> accessor;
+        IComparer<PropertyType> real_comparer;
+        Func<T, PropertyType> accessor;
 
-        public PropertyComparer(Func<ItemToSort, PropertyType> accessor)
+        public PropertyComparer(Func<T, PropertyType> accessor, IComparer<PropertyType> real_comparer)
         {
             this.accessor = accessor;
+            this.real_comparer = real_comparer;
         }
 
-        public int Compare(ItemToSort x, ItemToSort y)
+        public int Compare(T x, T y)
         {
-            var val_x = accessor(x);
-            var val_y = accessor(y);
-            return val_x.CompareTo(val_y);
-        }
-    }
-
-    public class ListComparer<ItemToSort, PropertyType> : IComparer<ItemToSort>
-    {
-        private readonly Func<ItemToSort, PropertyType> accessor;
-        private readonly IList<PropertyType> sortList;
-
-        public ListComparer(Func<ItemToSort, PropertyType> accessor, params PropertyType[] sortList)
-        {
-            this.accessor = accessor;
-            this.sortList = new List<PropertyType>(sortList);
-        }
-
-        public int Compare(ItemToSort x, ItemToSort y)
-        {
-            var indexX = sortList.IndexOf(accessor(x));
-            var indexY = sortList.IndexOf(accessor(y));
-            return indexX.CompareTo(indexY);
+            real_comparer.Compare(accessor(x), accessor(y));
         }
     }
 }

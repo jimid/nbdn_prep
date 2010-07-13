@@ -29,9 +29,18 @@ namespace nothinbutdotnetprep.utility
             return list.one_at_a_time();
         }
 
-		  public static ComparerBuilder<T> sort_by<T, PropertyType>(this IEnumerable<T> items, Func<T, PropertyType> accessor) where PropertyType : IComparable<PropertyType>
-		  {
-			return Sort<T>.by(accessor);
-		  }
+        public static ComparableEnumerable<T> sort_by<T, PropertyType>(this IEnumerable<T> items, Func<T, PropertyType> accessor)
+            where PropertyType : IComparable<PropertyType>
+        {
+            return new ComparableEnumerable<T>(items, new ComparerBuilder<T>(
+                                                          new PropertyComparer<T, PropertyType>(accessor, new ComparableComparer<PropertyType>())));
+        }
+
+        public static ComparableEnumerable<T> sort_by<T, PropertyType>(this IEnumerable<T> items, Func<T, PropertyType> accessor, SortDirection direction)
+            where PropertyType : IComparable<PropertyType>
+        {
+            return new ComparableEnumerable<T>(items,
+                );
+        }
     }
 }
