@@ -22,6 +22,12 @@ namespace nothinbutdotnetprep.utility.sorting
             return then_using(new PropertyComparer<ItemToSort, PropertyType>(accessor));
         }
 
+        public IEnumerable<ItemToSort> then_by<PropertyType>(Func<ItemToSort, PropertyType> accessor) where PropertyType : IComparable<PropertyType>
+        {
+			//return list.one_at_a_time();
+			return then_using(new PropertyComparer<ItemToSort, PropertyType>(accessor)).one_at_a_time();   
+        }
+
         public ComparerBuilder<ItemToSort> then_by_descending<PropertyType>(Func<ItemToSort, PropertyType> accessor) where PropertyType : IComparable<PropertyType>
         {
             return then_using(new PropertyComparer<ItemToSort, PropertyType>(accessor).reverse());

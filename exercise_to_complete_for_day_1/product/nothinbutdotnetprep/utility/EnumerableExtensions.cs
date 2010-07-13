@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using nothinbutdotnetprep.utility.filtering;
+using nothinbutdotnetprep.utility.sorting;
 
 namespace nothinbutdotnetprep.utility
 {
@@ -27,5 +28,10 @@ namespace nothinbutdotnetprep.utility
             list.Sort(comparer);
             return list.one_at_a_time();
         }
+
+		  public static ComparerBuilder<T> sort_by<T, PropertyType>(this IEnumerable<T> items, Func<T, PropertyType> accessor) where PropertyType : IComparable<PropertyType>
+		  {
+			return Sort<T>.by(accessor);
+		  }
     }
 }
