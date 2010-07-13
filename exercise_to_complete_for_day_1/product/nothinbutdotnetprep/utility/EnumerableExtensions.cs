@@ -32,15 +32,21 @@ namespace nothinbutdotnetprep.utility
         public static ComparableEnumerable<T> sort_by<T, PropertyType>(this IEnumerable<T> items, Func<T, PropertyType> accessor)
             where PropertyType : IComparable<PropertyType>
         {
-            return new ComparableEnumerable<T>(items, new ComparerBuilder<T>(
-                                                          new PropertyComparer<T, PropertyType>(accessor, new ComparableComparer<PropertyType>())));
+            return items.sort_by(accessor, SortDirections.normal);
         }
 
         public static ComparableEnumerable<T> sort_by<T, PropertyType>(this IEnumerable<T> items, Func<T, PropertyType> accessor, SortDirection direction)
             where PropertyType : IComparable<PropertyType>
         {
-            return new ComparableEnumerable<T>(items,
+            return items.sort_by(
+                new PropertyComparer<T, PropertyType>(accessor,
+                                                      direction.apply_against(new ComparableComparer<PropertyType>()))
                 );
+        }
+
+        public static ComparableEnumerable<T> sort_by<T>(this IEnumerable<T> items, IComparer<T> comparer)
+        {
+            return new ComparableEnumerable<T>(items, new ComparerBuilder<T>(comparer));
         }
     }
 }

@@ -260,9 +260,7 @@ namespace nothinbutdotnetprep.specs
 
             It should_be_able_to_sort_all_movies_by_title_descending = () =>
             {
-                var results = sut.all_movies().sort_by(x => x.title)
-                    .then_by(x => x.rating)
-                    .then_by(x => x.date_published);
+                var results = sut.all_movies().sort_by(x => x.title, SortDirections.descending);
 
 
                 results.ShouldContainOnlyInOrder(theres_something_about_mary, the_ring, shrek,
@@ -272,7 +270,7 @@ namespace nothinbutdotnetprep.specs
 
             It should_be_able_to_sort_all_movies_by_title_ascending = () =>
             {
-                var results = sut.sort_all_movies_by_title_ascending;
+                var results = sut.all_movies().sort_by(x => x.title);
 
                 results.ShouldContainOnlyInOrder(a_bugs_life, cars, indiana_jones_and_the_temple_of_doom,
                                                  pirates_of_the_carribean, shrek, the_ring,
@@ -281,7 +279,7 @@ namespace nothinbutdotnetprep.specs
 
             It should_be_able_to_sort_all_movies_by_date_published_descending = () =>
             {
-                var results = sut.sort_all_movies_by_date_published_descending();
+                var results = sut.all_movies().sort_by(x => x.date_published, SortDirections.descending);
 
                 results.ShouldContainOnlyInOrder(theres_something_about_mary, shrek, the_ring, cars,
                                                  pirates_of_the_carribean, a_bugs_life,
@@ -290,7 +288,7 @@ namespace nothinbutdotnetprep.specs
 
             It should_be_able_to_sort_all_movies_by_date_published_ascending = () =>
             {
-                var results = sut.sort_all_movies_by_date_published_ascending();
+                var results = sut.all_movies().sort_by(x => x.date_published);
 
                 results.ShouldContainOnlyInOrder(indiana_jones_and_the_temple_of_doom, a_bugs_life,
                                                  pirates_of_the_carribean, cars, the_ring, shrek,

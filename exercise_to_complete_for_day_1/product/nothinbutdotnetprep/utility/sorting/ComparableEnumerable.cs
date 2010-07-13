@@ -28,7 +28,7 @@ namespace nothinbutdotnetprep.utility.sorting
         public IEnumerator<T> GetEnumerator()
         {
             var sorted = new List<T>(items);
-            sorted.Sort();
+            sorted.Sort(comparer_builder);
             return sorted.GetEnumerator();
         }
 

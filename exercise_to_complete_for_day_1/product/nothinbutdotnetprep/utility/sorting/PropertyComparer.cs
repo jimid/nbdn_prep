@@ -16,7 +16,7 @@ namespace nothinbutdotnetprep.utility.sorting
 
         public int Compare(T x, T y)
         {
-            real_comparer.Compare(accessor(x), accessor(y));
+            return real_comparer.Compare(accessor(x), accessor(y));
         }
     }
 }

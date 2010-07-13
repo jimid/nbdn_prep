@@ -22,6 +22,11 @@ namespace nothinbutdotnetprep.utility.sorting
             return then_by(accessor, SortDirections.normal);
         }
 
+        public ComparerBuilder<ItemToSort> then_by<PropertyType>(Func<ItemToSort, PropertyType> accessor, SortDirection sortDirection) where PropertyType : IComparable<PropertyType>
+        {
+            return then_using(new PropertyComparer<ItemToSort, PropertyType>(accessor, sortDirection.apply_against(new ComparableComparer<PropertyType>())));
+        }
+
 
         public ComparerBuilder<ItemToSort> then_by_descending<PropertyType>(Func<ItemToSort, PropertyType> accessor) where PropertyType : IComparable<PropertyType>
         {
