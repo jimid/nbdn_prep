@@ -22,12 +22,6 @@ namespace nothinbutdotnetprep.utility
             return all_items_matching(items, criteria.is_satisfied_by);
         }
 
-        public static IEnumerable<T> sort_all_using<T>(this IEnumerable<T> items, IComparer<T> comparer)
-        {
-            var list = new List<T>(items);
-            list.Sort(comparer);
-            return list.one_at_a_time();
-        }
 
         public static ComparableEnumerable<T> sort_by<T, PropertyType>(this IEnumerable<T> items, Func<T, PropertyType> accessor)
             where PropertyType : IComparable<PropertyType>
